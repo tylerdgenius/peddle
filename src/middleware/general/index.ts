@@ -1,5 +1,5 @@
-import { HttpStatusCode } from '@enums/HttpStatusCodes';
-import { logToConsole, responseObject } from '@utilities/index';
+import { HttpStatusCode } from '../../enums';
+import { logToConsole, responseObject } from '../../utilities';
 import { RequestHandler } from 'express';
 
 import jwt from 'jsonwebtoken';

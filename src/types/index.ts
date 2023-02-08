@@ -27,4 +27,10 @@ export type ReturnedData = {
   status: boolean;
   message: string;
   payload: unknown;
-}
+};
+
+export type ErrorHandler = {
+  message: string;
+};
+
+export type TypeMapper<T, K extends keyof T> = T[K];

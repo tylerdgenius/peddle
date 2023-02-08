@@ -1,4 +1,5 @@
 import { Types } from 'mongoose';
+import { ReturnedData } from 'types';
 
 export type User = {
   username: string;
@@ -6,12 +7,13 @@ export type User = {
   email: string;
   _id: Types.ObjectId;
   password: string;
+  token: string;
 };
 
 export type InsertUserData = (props: {
-    updateData: Omit<User, '_id' | 'password'>
-}) => Promise<ReturnedData>
+  updateData: Omit<User, '_id'>;
+}) => Promise<ReturnedData>;
 
 export type FindUser = (props: {
-    filter: User
-}) => Promise<ReturnedData>
+  filter: Partial<User>;
+}) => Promise<ReturnedData>;

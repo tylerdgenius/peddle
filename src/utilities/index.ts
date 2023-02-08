@@ -44,3 +44,28 @@ export const logToConsole = (message: string | Record<string, unknown>) => {
 
   return undefined;
 };
+
+export const dataChecker = (data: Record<string, unknown>) => {
+  const checkData = Object.entries(data)
+    .filter((emptyValueEntry) => {
+      // if (
+      //   !emptyValueEntry[1] ||
+      //   emptyValueEntry[1] === null ||
+      //   emptyValueEntry[1] === undefined
+      // )
+      //   return emptyValueEntry;
+      return (
+        !emptyValueEntry[1] ||
+        emptyValueEntry[1] === null ||
+        emptyValueEntry[1] === undefined
+      );
+    })
+    .map((emptyValueEntry) => {
+      return { [emptyValueEntry[0]]: `${emptyValueEntry[0]} is required` };
+    });
+
+  return {
+    status: checkData.length > 0,
+    payload: checkData,
+  };
+};

@@ -1,6 +1,6 @@
-import dotenv from "dotenv";
-import { ProcessEnv } from "../types";
-import { namespaceCreator, routeCreator } from "../utilities";
+import dotenv from 'dotenv';
+import { ProcessEnv } from '../types';
+import { namespaceCreator, routeCreator } from '../utilities';
 
 dotenv.config();
 
@@ -11,9 +11,9 @@ const BackendUrlGetter = (urlFilter: string, port = 7000) => ({
 });
 
 const FrontendUrlGetter = (port = 8100) => ({
-  production: "http://peddle.ng",
+  production: 'http://peddle.ng',
   development: `http://localhost:${port}`,
-  staging: "http://staging.peddle.ng",
+  staging: 'http://staging.peddle.ng',
 });
 
 const { BACKEND_LOCAL_PORT, NODE_ENV, DB_PROD, DB_DEV, DB_STAGING } =
@@ -21,8 +21,10 @@ const { BACKEND_LOCAL_PORT, NODE_ENV, DB_PROD, DB_DEV, DB_STAGING } =
 
 export const AppUrls = {
   backendPort: BACKEND_LOCAL_PORT,
-  frontendUrl: FrontendUrlGetter(Number.parseInt(BACKEND_LOCAL_PORT))[NODE_ENV],
-  backendUrl: BackendUrlGetter("", Number.parseInt(BACKEND_LOCAL_PORT))[
+  frontendUrl: FrontendUrlGetter(Number.parseInt(BACKEND_LOCAL_PORT, 10))[
+    NODE_ENV
+  ],
+  backendUrl: BackendUrlGetter('', Number.parseInt(BACKEND_LOCAL_PORT, 10))[
     NODE_ENV
   ],
 };
@@ -34,9 +36,21 @@ export const DBUrls = {
 };
 
 export const Routes = {
-  entry: routeCreator({ path: "/" }),
+  entry: routeCreator({ path: '/' }),
+  user: {
+    entry: routeCreator({ path: '/user' }),
+    register: routeCreator({ path: '/register', method: 'post' }),
+    login: routeCreator({ path: '/login', method: 'post' }),
+  },
+  product: {
+    entry: routeCreator({ path: '/products' }),
+    addProduct: routeCreator({ path: '/add', method: 'post' }),
+    editProduct: routeCreator({ path: '/edit', method: 'put' }),
+    deleteProduct: routeCreator({ path: '/edit', method: 'put' }),
+    getProducts: routeCreator({ path: '/view' }),
+  },
 };
 
 export const Namespaces = {
-  entry: namespaceCreator({ path: "/" }),
+  entry: namespaceCreator({ path: '/' }),
 };

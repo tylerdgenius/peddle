@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { User } from './user.type';
+import { FindUser, InsertUserData, User } from './user.type';
 
 const userSchema = new Schema<User>(
   {
@@ -18,28 +18,25 @@ const userSchema = new Schema<User>(
       unique: true,
     },
     password: {
-        type: String,
-        required: true
-    }
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
 
 export const userModel = model<User>('user', userSchema);
 
-export const insertUser: InsertUserData = ({
-    updateData
-}) => {
+export const insertUser: InsertUserData = async ({ updateData }) => {
   try {
-
     const insertUserData = await userModel.create({
-        ...updateData
-    })
+      ...updateData,
+    });
 
     return {
       status: true,
       message: 'User data successfully added into the database',
-      payload: insertUserData
+      payload: insertUserData,
     };
   } catch (error) {
     return {
@@ -50,16 +47,19 @@ export const insertUser: InsertUserData = ({
   }
 };
 
-export const findUser: FindUser = ({filter}) => {
+export const findUser: FindUser = async ({ filter }) => {
   try {
     const user = await userModel.findOne({
-        ...filter
+      ...filter,
     });
 
+    if (!user || Object.keys(user).length <= 0)
+      throw new Error('Unable to fetch user details');
+
     const returnedObject = {
-        ...user.toObject();
-        password: null;
-    }
+      ...user.toObject(),
+      password: null,
+    };
 
     return {
       status: true,

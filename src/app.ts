@@ -7,6 +7,7 @@ import { Server } from 'socket.io';
 import { loadServices } from './services';
 import { connectDB } from './config';
 import { DBUrls } from './i18n';
+import { logToConsole } from './utilities';
 
 dotenv.config();
 
@@ -39,5 +40,5 @@ const PORT = ENV_PORT || BACKEND_LOCAL_PORT || 7007;
 connectDB(DBUrls[NODE_ENV]);
 
 server.listen(PORT, () => {
-  console.log(`Moolah server currently running on port ${PORT}`);
+  logToConsole(`Peddle api currently running on port ${PORT}`);
 });

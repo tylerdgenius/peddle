@@ -1,5 +1,5 @@
-import { HttpStatusCode } from "../enums";
-import { RequestHandler, Response } from "express";
+import { HttpStatusCode } from '../enums';
+import { RequestHandler, Response } from 'express';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type ServerUtilities<T = any> = {
@@ -10,29 +10,16 @@ export type ServerUtilities<T = any> = {
   payload?: T;
 };
 
-export type ResponseObject<T = undefined> = (props: ServerUtilities<T>) => void;
+export type ResponseObject<T = any> = (props: ServerUtilities<T>) => void;
 
 export type HttpMethods =
-  | "get"
-  | "GET"
-  | "delete"
-  | "DELETE"
-  | "head"
-  | "HEAD"
-  | "options"
-  | "OPTIONS"
-  | "post"
-  | "POST"
-  | "put"
-  | "PUT"
-  | "patch"
-  | "PATCH"
-  | "purge"
-  | "PURGE"
-  | "link"
-  | "LINK"
-  | "unlink"
-  | "UNLINK";
+  | 'get'
+  | 'delete'
+  | 'head'
+  | 'options'
+  | 'post'
+  | 'put'
+  | 'patch';
 
 type RouteCreatorProps = {
   path: string;
@@ -52,7 +39,7 @@ export type HandlerCreator = (
 ) => HandlerCreatorProps;
 
 type NamespaceCreatorProps = {
-  path: "/";
+  path: '/';
 };
 
 export type NamespaceCreator = (
