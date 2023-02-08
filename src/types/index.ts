@@ -26,7 +26,7 @@ export type InsertionModelType = (props: {
 export type ReturnedData = {
   status: boolean;
   message: string;
-  payload: unknown;
+  payload: any;
 };
 
 export type ErrorHandler = {

@@ -8,6 +8,8 @@ export type User = {
   _id: Types.ObjectId;
   password: string;
   token: string;
+  ipAddress: string;
+  avatarUrl: string;
 };
 
 export type InsertUserData = (props: {

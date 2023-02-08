@@ -21,6 +21,14 @@ const userSchema = new Schema<User>(
       type: String,
       required: true,
     },
+    ipAddress: {
+      type: String,
+      required: true,
+    },
+    avatarUrl: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
@@ -58,7 +66,6 @@ export const findUser: FindUser = async ({ filter }) => {
 
     const returnedObject = {
       ...user.toObject(),
-      password: null,
     };
 
     return {
