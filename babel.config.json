@@ -1,0 +1,38 @@
+{
+  "presets": [
+    "@babel/preset-typescript",
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry",
+        "targets": "> 0.25%, not dead"
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["src"],
+        "extensions": [
+          ".ios.js",
+          ".android.js",
+          ".js",
+          ".ts",
+          ".tsx",
+          ".json",
+          ".svg"
+        ],
+        "alias": {
+          "@services": "services/*",
+          "@utilities": "utilities/*",
+          "@config": "config/*",
+          "@i18n": "i18n/*",
+          "@enums": "enums/*",
+          "@types": "types/*",
+          "@middleware": "middleware/*"
+        }
+      }
+    ]
+  ]
+}
