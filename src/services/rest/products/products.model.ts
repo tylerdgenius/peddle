@@ -7,7 +7,7 @@ import {
   InsertProductData,
   Product,
   UpdateProduct,
-} from './product.type';
+} from './products.type';
 
 const productSchema = new Schema<Product & TimeStamps>(
   {
@@ -38,10 +38,10 @@ const productSchema = new Schema<Product & TimeStamps>(
 
 const productModel = model('products', productSchema);
 
-export const insertProduct: InsertProductData = async ({ updateData }) => {
+export const insertProduct: InsertProductData = async ({ insertData }) => {
   try {
     const insertProductData = await productModel.create({
-      ...updateData,
+      ...insertData,
     });
 
     return {
@@ -82,6 +82,28 @@ export const findProduct: FindProduct = async ({ filter }) => {
     return {
       status: false,
       message: 'Unable to find product details in the database',
+      payload: null,
+    };
+  }
+};
+
+export const findProducts: FindProducts = async ({ filter }) => {
+  try {
+    const products = await productModel.find(filter);
+
+    if (!products || products.length <= 0)
+      throw new Error('Unable to fetch products');
+
+    return {
+      status: true,
+      message: 'Successfully found products',
+      payload: products,
+    };
+  } catch (error) {
+    logToConsole({ error });
+    return {
+      status: false,
+      message: 'Unable to find products in the database',
       payload: null,
     };
   }

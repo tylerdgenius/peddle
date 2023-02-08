@@ -11,10 +11,14 @@ export type Product = {
 };
 
 export type InsertProductData = (props: {
-  updateData: Omit<Product, '_id'>;
+  insertData: Partial<Omit<Product, '_id'>>;
 }) => Promise<ReturnedData>;
 
 export type FindProduct = (props: {
+  filter: Partial<Product>;
+}) => Promise<ReturnedData>;
+
+export type FindProducts = (props: {
   filter: Partial<Product>;
 }) => Promise<ReturnedData>;
 
