@@ -1,20 +1,20 @@
-import { HandlerCreatorProps } from "@utilities/types";
-import { Router } from "express";
-import { openGeneralMiddleware } from "../../../middleware";
-import { handlerCreator } from "../../../utilities";
+import { HandlerCreatorProps } from '../../../utilities';
+import { Router } from 'express';
+import { openGeneralMiddleware } from '../../../middleware';
+import { handlerCreator } from '../../../utilities';
 import {
   welcomePageHandler,
   testEntryRouteAvailability,
-} from "./entry.controller";
+} from './entry.controller';
 
 const entryServiceLoaders: HandlerCreatorProps[] = [
   handlerCreator({
-    path: "/",
-    handlers: [openGeneralMiddleware, welcomePageHandler],
+    path: '/test',
+    handlers: [openGeneralMiddleware, testEntryRouteAvailability],
   }),
   handlerCreator({
-    path: "/test",
-    handlers: [openGeneralMiddleware, testEntryRouteAvailability],
+    path: '/',
+    handlers: [openGeneralMiddleware, welcomePageHandler],
   }),
 ];
 

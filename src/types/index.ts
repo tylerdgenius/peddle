@@ -34,3 +34,8 @@ export type ErrorHandler = {
 };
 
 export type TypeMapper<T, K extends keyof T> = T[K];
+
+export type TimeStamps = {
+  createdAt: string;
+  updatedAt: string;
+};

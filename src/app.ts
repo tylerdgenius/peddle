@@ -17,7 +17,7 @@ const corsOptions = {
   // credentials: true,
 };
 
-const app: Express = express();
+export const app: Express = express();
 
 app.use(cors(corsOptions));
 
@@ -28,6 +28,8 @@ const io = new Server(server, {
 });
 
 loadServices(app, io);
+
+app.use('/api/products', express.static('uploads/resume'));
 
 const {
   BACKEND_LOCAL_PORT,

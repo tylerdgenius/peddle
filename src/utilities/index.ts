@@ -69,3 +69,5 @@ export const dataChecker = (data: Record<string, unknown>) => {
     payload: checkData,
   };
 };
+
+export * from './types';

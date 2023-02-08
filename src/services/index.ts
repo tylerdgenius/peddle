@@ -27,7 +27,7 @@ const serviceLoaders = [
 export const loadServices = (app: Express, io: Server) => {
   serviceLoaders.map((service) => {
     logToConsole('Main service loader ran successfully');
-    app.use(`/api${service.path}`, ...service.handlers);
+    return app.use(`/api${service.path}`, ...service.handlers);
   });
 
   socketHandler(io);
